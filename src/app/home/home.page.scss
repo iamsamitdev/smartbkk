@@ -1,31 +1,57 @@
-#container {
-  text-align: center;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  .b_top_content {
+    padding-top: 30px;
+    padding-left: 20px;
+    overflow: hidden;
+  }
+  .b_top_content img {
+    width: 80px;
+    border-radius: 50%;
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 20px;
+    border: 2px solid #fff;
+  }
+  .box-c-right {
+    display: inline-block;
+  }
+  .b_top_content h2 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  .b_top_content p {
+    margin-top: 0px;
+  }
+  .box-cq {
+    height: 100px;
+    background-color: rgb(20, 112, 140);
+    border: 3px solid #fff;
+    text-align: center;
+    padding-top: 20px;
+    color: #fff
+  }
+  .box-cf {
+    height: 100px;
+    background-color: rgb(20, 112, 140);
+    border: 3px solid #fff;
+    color: #fff;
+    text-align: center;
+    padding-top: 20px;
+    padding-left: 30px;
+  }
+  ion-icon[name=logo-apple-appstore],
+  ion-icon[name=compass],
+  ion-icon[name=sunny],
+  ion-icon[name=map],
+  ion-icon[name=cube],
+  ion-icon[name=pie-chart],
+  ion-icon[name=camera],
+  ion-icon[name=qr-code],
+  ion-icon[name=notifications]
+ {
+    font-size: 40px;
+    display: block;
+    color: #fff;
+    margin-left: auto;
+    margin-right: auto;
 }
-
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
-
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
-}
-
-#container a {
-  text-decoration: none;
-}
-
-ion-content ion-toolbar {
-  --background: translucent;
-}
+ 

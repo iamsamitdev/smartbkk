@@ -1,20 +1,257 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>
-      Blank
+     {{ segnav }}
     </ion-title>
   </ion-toolbar>
+
+  <ion-toolbar>
+    <ion-segment [(ngModel)]="segnav">
+      <ion-segment-button value="Home">
+        <ion-label>Home</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="Stock">
+        <ion-label>Stock</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="Message">
+        <ion-label>Message</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="Setting">
+        <ion-label>Settings</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div [ngSwitch]="segnav">
+    <div *ngSwitchCase="'Home'">
+
+      <!-- Slide-->
+      <ion-slides pager="true" [options]="slideOpts">
+        <ion-slide>
+          <img src="assets/img/slide_1.jpg" alt="">
+        </ion-slide>
+        <ion-slide>
+          <img src="assets/img/slide_2.jpeg" alt="">
+        </ion-slide>
+        <ion-slide>
+          <img src="assets/img/slide_3.png" alt="">
+        </ion-slide>
+      </ion-slides>
+
+      <!-- Menu-->
+      <ion-grid>
+        <ion-row>
+          <ion-col class="box-cq">
+            <ion-icon name="logo-apple-appstore"></ion-icon>
+            Store
+          </ion-col>
+          <ion-col class="box-cq">
+            <ion-icon name="compass"></ion-icon>
+            Compass
+          </ion-col>
+          <ion-col class="box-cq">
+            <ion-icon name="sunny"></ion-icon>
+            Weather
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class="box-cq">
+            <ion-icon name="map"></ion-icon>
+            Maps
+          </ion-col>
+          <ion-col class="box-cq">
+            <ion-icon name="cube"></ion-icon>
+            Cube
+          </ion-col>
+          <ion-col class="box-cq">
+            <ion-icon name="pie-chart"></ion-icon>
+            Chart
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class="box-cq">
+            <ion-icon name="camera"></ion-icon>
+            Camera
+          </ion-col>
+          <ion-col class="box-cq">
+            <ion-icon name="qr-code"></ion-icon>
+            QRCode
+          </ion-col>
+          <ion-col class="box-cq">
+            <ion-icon name="notifications"></ion-icon>
+            Notification
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+    </div>
+    <div *ngSwitchCase="'Stock'">
+      <!-- Product List-->
+      <ion-list>
+        <ion-list-header>
+          <h2>Product Lists</h2>
+        </ion-list-header>
+        <ion-item *ngFor='let key of  [1,2,3,4,5]'>
+          <ion-avatar slot="start">
+            <img src="assets/img/p1.jpg">
+          </ion-avatar>
+          <ion-label>
+            <h2>Shpping Bag</h2>
+            <h3>New model shopping bag</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis...</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+    <div *ngSwitchCase="'Message'">
+        <ion-list>
+          <ion-list-header>
+            Recent Conversations
+          </ion-list-header>
+  
+          <ion-item>
+            <ion-avatar slot="start">
+              <img src="assets/img/avatar-finn.png">
+            </ion-avatar>
+            <ion-label>
+              <h2>Finn</h2>
+              <h3>I'm a big deal</h3>
+              <p>Listen, I've had a pretty messed up day...</p>
+            </ion-label>
+          </ion-item>
+  
+          <ion-item>
+            <ion-avatar slot="start">
+              <img src="assets/img/avatar-han.png">
+            </ion-avatar>
+            <ion-label>
+              <h2>Han</h2>
+              <h3>Look, kid...</h3>
+              <p>I've got enough on my plate as it is, and I...</p>
+            </ion-label>
+          </ion-item>
+  
+          <ion-item>
+            <ion-avatar slot="start">
+              <img src="assets/img/avatar-rey.png">
+            </ion-avatar>
+            <ion-label>
+              <h2>Rey</h2>
+              <h3>I can handle myself</h3>
+              <p>You will remove these restraints and leave...</p>
+            </ion-label>
+          </ion-item>
+  
+          <ion-item>
+            <ion-avatar slot="start">
+              <img src="assets/img/avatar-luke.png">
+            </ion-avatar>
+            <ion-label>
+              <h2>Luke</h2>
+              <h3>Your thoughts betray you</h3>
+              <p>I feel the good in you, the conflict...</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+  
+        <ion-list>
+          <ion-list-header>
+            Online
+          </ion-list-header>
+  
+          <ion-item>
+            <ion-avatar slot="start">
+              <img src="assets/img/avatar-poe.png">
+            </ion-avatar>
+            <ion-label>
+              <h2>Poe</h2>
+              <h3>New Ride</h3>
+              <p>I just upgraded my X-Wing. Next time...</p>
+            </ion-label>
+          </ion-item>
+  
+          <ion-item>
+            <ion-avatar slot="start">
+              <img src="assets/img/avatar-ben.png">
+            </ion-avatar>
+            <ion-label>
+              <h2>Ben</h2>
+              <h3>Move Along</h3>
+              <p>These aren't the droids you're looking for...</p>
+            </ion-label>
+          </ion-item>
+  
+          <ion-item>
+            <ion-avatar slot="start">
+              <img src="assets/img/avatar-leia.png">
+            </ion-avatar>
+            <ion-label>
+              <h2>Leia</h2>
+              <h3>You're My Only Hope</h3>
+              <p>I've placed information vital to the survival...</p>
+            </ion-label>
+          </ion-item>
+  
+          <ion-item>
+            <ion-avatar slot="start">
+              <img src="assets/img/avatar-yoda.png">
+            </ion-avatar>
+            <ion-label>
+              <h2>Yoda</h2>
+              <h3>Size matters not</h3>
+              <p>Do or do not. There is no try...</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+    </div>
+    <div *ngSwitchCase="'Setting'">
+
+    <ion-list-header>
+      <ion-label>General Settings</ion-label>
+    </ion-list-header>
+
+      <ion-list>
+        <ion-item>
+          <ion-icon name="language"></ion-icon>
+          <ion-label>&nbsp;&nbsp;Language</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="notifications-circle"></ion-icon>
+          <ion-label>&nbsp;&nbsp;Notification</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="calendar"></ion-icon>
+          <ion-label>&nbsp;&nbsp;Date / Time</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="add-circle"></ion-icon>
+          <ion-label>&nbsp;&nbsp;Address</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="help-circle"></ion-icon>
+          <ion-label>&nbsp;&nbsp;System Info</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="grid"></ion-icon>
+          <ion-label>&nbsp;&nbsp;Other menu1</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="grid"></ion-icon>
+          <ion-label>&nbsp;&nbsp;Other menu2</ion-label>
+        </ion-item>
+      </ion-list>
+      <ion-footer>
+        <ion-toolbar>
+          <ion-button (click)="btnLogout()" expand="block" shape="round" color="danger">
+            Sign Out
+          </ion-button>
+        </ion-toolbar>
+      </ion-footer>
+    </div>
   </div>
+
 </ion-content>
