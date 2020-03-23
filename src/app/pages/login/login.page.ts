@@ -101,7 +101,7 @@ export class LoginPage implements OnInit {
   }
 
   checkLogin(form: NgForm) {
-    alert(JSON.stringify(form));
+    // alert(JSON.stringify(form));
     this.dataUser.username = form['username'];
     this.dataUser.password = form['password'];
 
