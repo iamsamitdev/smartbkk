@@ -50,4 +50,15 @@ checkLogin(userdata): Observable<User> {
 );
 }
 
+// Register
+register(userdata): Observable<User> {
+  return this.http
+  .post<User>(this.base_path + 'user/register', JSON.stringify(userdata), this.httpOptions)
+  .pipe(
+  retry(2),
+  catchError(this.handleError)
+);
+}
+
+
 }

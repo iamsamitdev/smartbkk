@@ -12,15 +12,15 @@
     </div>
 
     <!-- Register form -->
-    <form [formGroup]="onRegisterForm" class="list-form">
+    <form [formGroup]="onRegisterForm" class="list-form" (ngSubmit)="checkRegister(onRegisterForm.value)">
       <ion-item no-padding class="animated fadeInUp">
         <ion-label position="floating">
           <ion-icon name="mail" item-start></ion-icon>
           ชื่อ-สกุล
         </ion-label>
-        <ion-input color="secondary" type="text" formControlName="fullName"></ion-input>
+        <ion-input color="secondary" type="text" formControlName="fullname"></ion-input>
       </ion-item>
-      <p ion-text class="text08  ion-margin-start" *ngIf="onRegisterForm.get('fullName').touched && onRegisterForm.get('fullName').hasError('required')">
+      <p ion-text class="text08  ion-margin-start" *ngIf="onRegisterForm.get('fullname').touched && onRegisterForm.get('fullname').hasError('required')">
         <ion-text color="warning">
           จำเป็นต้องกรอก
         </ion-text>
@@ -29,11 +29,11 @@
       <ion-item no-padding class="animated fadeInUp">
         <ion-label position="floating">
           <ion-icon name="mail" item-start></ion-icon>
-          อีเมล์
+          ชื่อผู้ใช้ (Username)
         </ion-label>
-        <ion-input color="secondary" type="email" formControlName="email"></ion-input>
+        <ion-input color="secondary" type="text" formControlName="username"></ion-input>
       </ion-item>
-      <p ion-text class="text08  ion-margin-start" *ngIf="onRegisterForm.get('email').touched && onRegisterForm.get('email').hasError('required')">
+      <p ion-text class="text08  ion-margin-start" *ngIf="onRegisterForm.get('username').touched && onRegisterForm.get('username').hasError('required')">
         <ion-text color="warning">
           จำเป็นต้องกรอก
         </ion-text>
@@ -51,15 +51,14 @@
           จำเป็นต้องกรอก
         </ion-text>
       </p>
+      <ion-button type="submit" icon-left size="medium" expand="full" shape="round" color="dark" [disabled]="!onRegisterForm.valid"
+      tappable>
+      <ion-icon name="log-in"></ion-icon>
+      ลงทะเบียน
+    </ion-button>
     </form>
 
     <div class="ion-margin-top">
-      <ion-button icon-left size="medium" expand="full" shape="round" color="dark" (click)="signUp()" [disabled]="!onRegisterForm.valid"
-        tappable>
-        <ion-icon name="log-in"></ion-icon>
-        ลงทะเบียน
-      </ion-button>
-
       <div class="ion-text-center ion-margin-top ion-margin-bottom">
         <ion-text color="light">
           หรือลงทะเบียนด้วย:

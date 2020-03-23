@@ -112,11 +112,23 @@ export class LoginPage implements OnInit {
             // ส่งไปหน้า tabs
             this.router.navigate(['home']);
           } else {
-            alert('login fail!');
+            // alert('login fail!');
+            this.presentAlert('ข้อมูลเข้าระบบไม่ถูกต้อง');
           }
         }, (err) => {
           console.log(err);
         });
+  }
+
+  async presentAlert(msg) {
+    const alert = await this.alertCtrl.create({
+      header: 'Login Status',
+     // subHeader: 'Login message',
+      message: msg,
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 
 }
