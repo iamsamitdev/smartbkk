@@ -5,6 +5,7 @@ import { retry, catchError } from 'rxjs/operators';
 
 // Import Model
 import { User } from '../model/User';
+import { Product } from '../model/Product';
 
 @Injectable({
   providedIn: 'root'
@@ -42,23 +43,46 @@ handleError(error: HttpErrorResponse) {
 
 // Check Login
 checkLogin(userdata): Observable<User> {
-  return this.http
-  .post<User>(this.base_path + 'user/login', JSON.stringify(userdata), this.httpOptions)
-  .pipe(
-  retry(2),
-  catchError(this.handleError)
-);
+    return this.http
+    .post<User>(this.base_path + 'user/login', JSON.stringify(userdata), this.httpOptions)
+    .pipe(
+    retry(2),
+    catchError(this.handleError)
+  );
 }
 
 // Register
 register(userdata): Observable<User> {
-  return this.http
-  .post<User>(this.base_path + 'user/register', JSON.stringify(userdata), this.httpOptions)
-  .pipe(
-  retry(2),
-  catchError(this.handleError)
-);
+    return this.http
+    .post<User>(this.base_path + 'user/register', JSON.stringify(userdata), this.httpOptions)
+    .pipe(
+    retry(2),
+    catchError(this.handleError)
+  );
 }
+
+//  ฟังก์ชันในการอ่านข้อมูล Product
+// Method GET
+geProductList(): Observable<Product> {
+  return this.http
+    .get<Product>(this.base_path + 'products')
+    .pipe(
+      retry(2),
+      catchError(this.handleError)
+    )
+}
+
+//  ฟังก์ชันในการอ่านข้อมูล Product ตามหมายเลข ID
+// Method GET
+geProductByID(id): Observable<Product> {
+  return this.http
+    .get<Product>(this.base_path + 'product/' + id)
+    .pipe(
+      retry(2),
+      catchError(this.handleError)
+    )
+}
+
 
 
 }

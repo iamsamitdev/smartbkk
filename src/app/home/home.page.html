@@ -90,19 +90,24 @@
 
     </div>
     <div *ngSwitchCase="'Stock'">
+
+      <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" class="refresh">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
+
       <!-- Product List-->
       <ion-list>
         <ion-list-header>
           <h2>Product Lists</h2>
         </ion-list-header>
-        <ion-item *ngFor='let key of  [1,2,3,4,5]'>
+        <ion-item *ngFor='let product of productData' (click)="showProductDetail(product.id)">
           <ion-avatar slot="start">
-            <img src="assets/img/p1.jpg">
+            <img src="http://localhost/ministock-api/public/images/stock/{{product.product_image}}">
           </ion-avatar>
           <ion-label>
-            <h2>Shpping Bag</h2>
-            <h3>New model shopping bag</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis...</p>
+            <h2>{{product.product_name}}</h2>
+            <h3>{{product.product_barcode}}</h3>
+            <p>{{product.product_price}}</p>
           </ion-label>
         </ion-item>
       </ion-list>

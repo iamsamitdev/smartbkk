@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-back-button slot="start"></ion-back-button>
+    <ion-title>{{productData.product_name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <img src="http://localhost/ministock-api/public/images/stock/{{productData.product_image}}" />
+    <ion-card-header>
+      <ion-card-subtitle>{{productData.product_barcode}}</ion-card-subtitle>
+      <ion-card-title>{{productData.product_name}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ul>
+        <li>ราคา {{productData.product_price}}</li>
+        <li>หมวดหมู่ {{productData.product_category}}</li>
+        <li>วันที่ {{productData.product_date}}</li>
+      </ul>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
