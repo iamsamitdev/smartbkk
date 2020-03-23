@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators , NgForm} from '@angular/forms';
 import { NavController, MenuController, ToastController, AlertController, LoadingController } from '@ionic/angular';
+import { Router } from '@angular/router';
+
+// เรียกใช้งาน Web API
+import { WebapiService } from '../../services/webapi.service';
+
+// เรียกใช้งาน Model
+import { User } from '../../model/User';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +15,11 @@ import { NavController, MenuController, ToastController, AlertController, Loadin
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+
   public onLoginForm: FormGroup;
+  username: string;
+  password: string;
+  dataUser: User;
 
   constructor(
     public navCtrl: NavController,
@@ -16,8 +27,12 @@ export class LoginPage implements OnInit {
     public toastCtrl: ToastController,
     public alertCtrl: AlertController,
     public loadingCtrl: LoadingController,
-    private formBuilder: FormBuilder
-  ) { }
+    private formBuilder: FormBuilder,
+    public api: WebapiService,
+    private router: Router
+  ) {
+    this.dataUser = new User();
+   }
 
   ionViewWillEnter() {
     this.menuCtrl.enable(false);
@@ -26,10 +41,10 @@ export class LoginPage implements OnInit {
   ngOnInit() {
 
     this.onLoginForm = this.formBuilder.group({
-      'email': [null, Validators.compose([
+      username: [null, Validators.compose([
         Validators.required
       ])],
-      'password': [null, Validators.compose([
+      password: [null, Validators.compose([
         Validators.required
       ])]
     });
@@ -38,12 +53,12 @@ export class LoginPage implements OnInit {
   async forgotPass() {
     const alert = await this.alertCtrl.create({
       header: 'Forgot Password?',
-      message: 'Enter you email address to send a reset link password.',
+      message: 'Enter you username to send a reset link password.',
       inputs: [
         {
-          name: 'email',
-          type: 'email',
-          placeholder: 'Email'
+          name: 'username',
+          type: 'text',
+          placeholder: 'Username'
         }
       ],
       buttons: [
@@ -85,8 +100,23 @@ export class LoginPage implements OnInit {
     this.navCtrl.navigateRoot('/register');
   }
 
-  goToHome() {
-    this.navCtrl.navigateRoot('/home');
+  checkLogin(form: NgForm) {
+    alert(JSON.stringify(form));
+    this.dataUser.username = form['username'];
+    this.dataUser.password = form['password'];
+
+    this.api.checkLogin(this.dataUser)
+      .subscribe(res => {
+          console.log(res);
+          if(res['status'] == 'success'){
+            // ส่งไปหน้า tabs
+            this.router.navigate(['home']);
+          } else {
+            alert('login fail!');
+          }
+        }, (err) => {
+          console.log(err);
+        });
   }
 
 }
